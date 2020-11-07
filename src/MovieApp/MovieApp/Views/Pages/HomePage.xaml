@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MovieApp"
+             xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+             xmlns:proc="clr-namespace:PanCardView.Processors;assembly=PanCardView"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:mf="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+             x:Class="MovieApp.HomePage"
+            
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False">
+    
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+            <GradientStop Color="#15285E"
+                          Offset="0.3"/>
+            <GradientStop Color="#00003A"
+                          Offset="1.2"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid x:Name="mainStack">
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="{x:Type ffimage:CachedImage}">
+                    <Setter Property="Aspect" Value="AspectFill"/>
+                    <Setter Property="Opacity" Value="0.6"/>
+                </Style>
+                <Style TargetType="{x:Type Frame}">
+                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                    <Setter Property="VerticalOptions" Value="Center"/>
+                    <Setter Property="HorizontalOptions" Value="Center"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="CornerRadius" Value="8"/>
+                    <Setter Property="WidthRequest" Value="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=DefaultViewWidth}"/>
+                    <Setter Property="HeightRequest" Value="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=DefaultViewHeight}"/>
+                </Style>
+            </Grid.Resources>
+
+            <Frame x:Name="upLeftImage">
+                <ffimage:CachedImage Source="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=NebulaImage, Converter={StaticResource FFImageSourceConverter}}"/>
+            </Frame>
+            <Frame x:Name="upCenterImage">
+                <ffimage:CachedImage Source="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=ScarletWitchImage, Converter={StaticResource FFImageSourceConverter}}"/>
+            </Frame>
+            <Frame x:Name="upRightImage">
+                <ffimage:CachedImage Source="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=BlackPantherImage, Converter={StaticResource FFImageSourceConverter}}"/>
+            </Frame>
+            <Frame x:Name="downLeftImage">
+                <ffimage:CachedImage Source="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=BlackWidowImage, Converter={StaticResource FFImageSourceConverter}}"/>
+            </Frame>
+            <Frame x:Name="downCenterImage">
+                <ffimage:CachedImage Source="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=CaptainAmericaImage, Converter={StaticResource FFImageSourceConverter}}"/>
+            </Frame>
+            <Frame x:Name="downRightImage">
+                <ffimage:CachedImage Source="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=StarlordImage, Converter={StaticResource FFImageSourceConverter}}"/>
+            </Frame>
+        </Grid>
+
+        <cards:CoverFlowView x:Name="coverFlowView" ItemsSource="{Binding Movies}"
+                             IsCyclical="True"
+                             VerticalOptions="Center" HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=SelectedViewHeight}"
+                             IsViewReusingEnabled="False">
+            <x:Arguments>
+                <proc:CoverFlowProcessor ScaleFactor="0.86"/>
+            </x:Arguments>
+
+            <cards:CoverFlowView.ItemTemplate>
+                <DataTemplate>
+                    <local:MovieView HorizontalOptions="Center" WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=SelectedViewWidth}"
+                                     VerticalOptions="Center" HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=SelectedViewHeight}">
+                        <local:MovieView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="MovieViewTapped"/>
+                        </local:MovieView.GestureRecognizers>
+                    </local:MovieView>
+                </DataTemplate>
+            </cards:CoverFlowView.ItemTemplate>
+        </cards:CoverFlowView>
+
+        <local:MovieView x:Name="fakeView"
+                         VerticalOptions="Center" HorizontalOptions="Center" IsVisible="false"
+                         InputTransparent="False">
+            <x:Arguments>
+                <x:Boolean>True</x:Boolean>
+            </x:Arguments>
+            <local:MovieView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="FakeMovieViewTapped"/>
+            </local:MovieView.GestureRecognizers>
+        </local:MovieView>
+
+        <Label x:Name="movieNameLabel"
+               FontFamily="BoldFont" TextColor="White" FontSize="55" Opacity="0" Scale="0"
+               HorizontalOptions="Center" VerticalOptions="Center"/>
+
+        <mf:MaterialFrame x:Name="movieInfoFrame" BindingContext="{Binding Source={x:Reference coverFlowView}, Path=SelectedItem}"
+                          MaterialBlurStyle="Light" MaterialTheme="AcrylicBlur" AndroidBlurOverlayColor="Transparent" 
+                          Margin="45" CornerRadius="5"
+                          VerticalOptions="Center">
+            <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" RowSpacing="30" Margin="2,4,2,-2">
+                <Grid.Resources>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="TextColor" Value="White"/>
+                        <Setter Property="FontSize" Value="17"/>
+                        <Setter Property="FontFamily" Value="BoldFont"/>
+                    </Style>
+                </Grid.Resources>
+
+                <StackLayout Grid.ColumnSpan="2" Spacing="2">
+                    <Label Text="{Binding Description}"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Rating}" VerticalOptions="Center" Margin="1,2,5,0"/>
+                        <local:RatingView BackColour="#a6a6a6" FrontColour="#ffffff" Path="{StaticResource StarsPath}" Rating="{Binding Rating}"
+                                          VerticalOptions="Center" HorizontalOptions="Start"
+                                          WidthRequest="90" HeightRequest="18"/>
+                        <Label Text="{Binding NumberOfRatings, StringFormat='({0})'}" VerticalOptions="Center" Margin="1,2,5,0"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="1" Spacing="9">
+                    <local:SvgView Path="{StaticResource PlayPath}" Colour="#ffffff"
+                                   HeightRequest="40" WidthRequest="40" HorizontalOptions="Start" VerticalOptions="Center"/>
+                    <Label Text="Watch Movie" FontSize="16"
+                           VerticalOptions="Center" HorizontalOptions="Start"
+                           WidthRequest="50"/>
+                </StackLayout>
+
+                <Button Grid.Row="1" Grid.Column="1" Text="Rate Movie" FontFamily="BoldFont" TextColor="White" BackgroundColor="#FF33C4"
+                        VerticalOptions="Center" HeightRequest="35" CornerRadius="4"/>
+            </Grid>
+        </mf:MaterialFrame>
+    </Grid>
+
+</ContentPage>

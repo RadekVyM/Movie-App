@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MovieApp"
+             x:Class="MovieApp.TabBarView">
+
+    <Grid Margin="35,0"
+          ColumnDefinitions="*,*,*" HorizontalOptions="Fill">
+
+        <Grid.Resources>
+            <Style TargetType="{x:Type Grid}">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="50"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+            <Style TargetType="{x:Type local:SvgView}">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="20"/>
+                <Setter Property="HeightRequest" Value="20"/>
+                <Setter Property="Colour" Value="#ffffff"/>
+            </Style>
+            <Style TargetType="{x:Type BoxView}">
+                <Setter Property="CornerRadius" Value="7"/>
+                <Setter Property="BackgroundColor" Value="#d3d2e5"/>
+            </Style>
+        </Grid.Resources>
+        
+        <Grid x:Name="homeGrid">
+            <BoxView/>
+            <local:SvgView Path="{StaticResource HomePath}"/>
+
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="HomeTapped"/>
+            </Grid.GestureRecognizers>
+        </Grid>
+
+        <Grid x:Name="searchGrid" Grid.Column="1">
+            <BoxView/>
+            <local:SvgView Path="{StaticResource MagnifyingGlassPath}"/>
+
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="SearchTapped"/>
+            </Grid.GestureRecognizers>
+        </Grid>
+
+        <Grid x:Name="profileGrid" Grid.Column="2">
+            <BoxView/>
+            <local:SvgView Path="{StaticResource ProfilePath}"/>
+
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ProfileTapped"/>
+            </Grid.GestureRecognizers>
+        </Grid>
+    </Grid>
+</ContentView>

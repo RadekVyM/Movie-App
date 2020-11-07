@@ -1,0 +1,88 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\BaseOne-Bold.otf" />
+    <None Remove="Fonts\BaseOne-Heavy.otf" />
+    <None Remove="Fonts\BaseOne-Regular.otf" />
+    <None Remove="Images\blackpanther.jpg" />
+    <None Remove="Images\blackwidow.jpg" />
+    <None Remove="Images\captainamerica.jpg" />
+    <None Remove="Images\ironman.png" />
+    <None Remove="Images\ironmanBack.jpg" />
+    <None Remove="Images\light.png" />
+    <None Remove="Images\nebula.jpg" />
+    <None Remove="Images\scarletwitch.jpg" />
+    <None Remove="Images\starlord.jpg" />
+    <None Remove="Images\strange.png" />
+    <None Remove="Images\strangeBack.jpg" />
+    <None Remove="Images\strangeLightning1.png" />
+    <None Remove="Images\strangeLightning2.png" />
+    <None Remove="Images\thor.png" />
+    <None Remove="Images\thorBack.jpg" />
+    <None Remove="Images\thorLightning1.png" />
+    <None Remove="Images\thorLightning2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Fonts\BaseOne-Bold.otf" />
+    <EmbeddedResource Include="Fonts\BaseOne-Heavy.otf" />
+    <EmbeddedResource Include="Fonts\BaseOne-Regular.otf" />
+    <EmbeddedResource Include="Images\blackpanther.jpg" />
+    <EmbeddedResource Include="Images\blackwidow.jpg" />
+    <EmbeddedResource Include="Images\captainamerica.jpg" />
+    <EmbeddedResource Include="Images\ironman.png" />
+    <EmbeddedResource Include="Images\ironmanBack.jpg" />
+    <EmbeddedResource Include="Images\light.png" />
+    <EmbeddedResource Include="Images\nebula.jpg" />
+    <EmbeddedResource Include="Images\scarletwitch.jpg" />
+    <EmbeddedResource Include="Images\starlord.jpg" />
+    <EmbeddedResource Include="Images\strange.png" />
+    <EmbeddedResource Include="Images\strangeBack.jpg" />
+    <EmbeddedResource Include="Images\strangeLightning1.png" />
+    <EmbeddedResource Include="Images\strangeLightning2.png" />
+    <EmbeddedResource Include="Images\thor.png" />
+    <EmbeddedResource Include="Images\thorBack.jpg" />
+    <EmbeddedResource Include="Images\thorLightning1.png" />
+    <EmbeddedResource Include="Images\thorLightning2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CardsView" Version="2.6.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.9" />
+    <PackageReference Include="Sharpnado.MaterialFrame" Version="1.1.3" />
+    <PackageReference Include="Sharpnado.Shadows" Version="1.2.0" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.2" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="AppShell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Controls\MovieView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Pages\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Controls\TabBarView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MovieApp.Core\MovieApp.Core.csproj" />
+  </ItemGroup>
+</Project>

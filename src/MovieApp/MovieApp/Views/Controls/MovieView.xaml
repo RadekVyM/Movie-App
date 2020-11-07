@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MovieApp"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:sh="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+             x:Class="MovieApp.MovieView">
+    
+    <Frame x:Name="mainFrame" Padding="0" CornerRadius="8" BackgroundColor="Transparent">
+        <Grid HorizontalOptions="Center">
+            <ffimage:CachedImage x:Name="backImage" Source="{Binding BackgroundImage, Converter={StaticResource FFImageSourceConverter}}" Aspect="AspectFill" Scale="1.1"/>
+            <ffimage:CachedImage x:Name="firstDetailImage" Source="{Binding FirstDetailImage, Converter={StaticResource FFImageSourceConverter}}" Aspect="AspectFill"
+                                 Opacity="0"/>
+            <ffimage:CachedImage x:Name="heroImage" Source="{Binding HeroImage, Converter={StaticResource FFImageSourceConverter}}" Aspect="AspectFit"
+                                 HorizontalOptions="Fill" VerticalOptions="End" Scale="1.4"/>
+            <ffimage:CachedImage x:Name="secondDetailImage" Source="{Binding SecondDetailImage, Converter={StaticResource FFImageSourceConverter}}" Aspect="AspectFill"
+                                 Opacity="0"/>
+            <ffimage:CachedImage x:Name="thirdDetailImage" Source="{Binding ThirdDetailImage, Converter={StaticResource FFImageSourceConverter}}" Aspect="AspectFit"
+                                 Opacity="0"
+                                 HorizontalOptions="Fill" VerticalOptions="End" Scale="1.4"/>
+
+            <StackLayout x:Name="infoStack" HorizontalOptions="Start" VerticalOptions="End" Margin="25" Spacing="0">
+                <StackLayout.Resources>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="TextColor" Value="White"/>
+                    </Style>
+
+                    <sh:SingleShade x:Key="Shade"
+                                    BlurRadius="10"
+                                    Opacity="0.4"
+                                    Offset="0,0"
+                                    Color="Black" />
+                </StackLayout.Resources>
+
+                <sh:Shadows CornerRadius="12" Shades="{StaticResource Shade}">
+                    <Label FontFamily="BoldFont" Text="{Binding Name}" FontSize="30"/>
+                </sh:Shadows>
+
+                <sh:Shadows CornerRadius="12" Shades="{StaticResource Shade}">
+                    <StackLayout Orientation="Horizontal">
+                        <Label FontFamily="BoldFont" Text="{Binding Rating}" VerticalOptions="Center" Margin="1,2,5,0"/>
+                        <local:RatingView BackColour="#a6a6a6" FrontColour="#ffffff" Path="{StaticResource StarsPath}" Rating="{Binding Rating}"
+                                          VerticalOptions="Center" HorizontalOptions="Start"
+                                          WidthRequest="80" HeightRequest="18"/>
+                    </StackLayout>
+                </sh:Shadows>
+            </StackLayout>
+        </Grid>
+    </Frame>
+</ContentView>

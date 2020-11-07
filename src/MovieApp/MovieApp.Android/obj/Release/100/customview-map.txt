@@ -1,0 +1,15 @@
+adaptive-icon;obj\Release\100\res\mipmap-anydpi-v26\icon.xml
+adaptive-icon;obj\Release\100\res\mipmap-anydpi-v26\icon_round.xml
+android.support.design.widget.TabLayout;obj\Release\100\res\layout\tabbar.xml
+android.support.v7.widget.Toolbar;obj\Release\100\res\layout\toolbar.xml
+background;obj\Release\100\res\mipmap-anydpi-v26\icon.xml
+background;obj\Release\100\res\mipmap-anydpi-v26\icon_round.xml
+color;obj\Release\100\res\values\colors.xml
+com.google.android.material.bottomnavigation.BottomNavigationView;obj\Release\100\res\layout\bottomtablayout.xml
+foreground;obj\Release\100\res\mipmap-anydpi-v26\icon.xml
+foreground;obj\Release\100\res\mipmap-anydpi-v26\icon_round.xml
+FrameLayout;obj\Release\100\res\layout\bottomtablayout.xml
+LinearLayout;obj\Release\100\res\layout\bottomtablayout.xml
+resources;obj\Release\100\res\values\colors.xml
+resources;obj\Release\100\res\values\styles.xml
+style;obj\Release\100\res\values\styles.xml
