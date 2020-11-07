@@ -1,5 +1,5 @@
 # Movie App
-A **Xamarin.Forms** application based on [Movie App - MVP](https://dribbble.com/shots/11959061-Movie-App-MVP) design by [Lukáš Straňák](https://dribbble.com/LukasStranak) and [Barbora Sojakova]().
+A **Xamarin.Forms** application based on [Movie App - MVP](https://dribbble.com/shots/11959061-Movie-App-MVP) design by [Lukáš Straňák](https://dribbble.com/LukasStranak) and [Barbora Sojakova](https://dribbble.com/Bashka86).
 
 ## Original design
 [![Dribbble Design](https://github.com/RadekVyM/Movie-App/blob/main/Images/original.jpg)](https://dribbble.com/shots/11956851-Movie-App-MVP)
